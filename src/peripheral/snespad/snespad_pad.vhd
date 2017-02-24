@@ -92,7 +92,7 @@ entity snespad_pad is
     but_num_o       : out std_logic;
     but_dot_o       : out std_logic;
     but_clear_o     : out std_logic;
-    but_equal_o     : out std_logic;
+    but_equal_o     : out std_logic
   );
 
 end snespad_pad;
