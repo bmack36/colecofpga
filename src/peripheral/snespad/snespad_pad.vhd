@@ -77,7 +77,22 @@ entity snespad_pad is
     but_up_o        : out std_logic;
     but_down_o      : out std_logic;
     but_left_o      : out std_logic;
-    but_right_o     : out std_logic
+    but_right_o     : out std_logic;
+    but_0_o         : out std_logic;
+    but_1_o         : out std_logic;
+    but_2_o         : out std_logic;
+    but_3_o         : out std_logic;
+    but_4_o         : out std_logic;
+    but_5_o         : out std_logic;
+    but_6_o         : out std_logic;
+    but_7_o         : out std_logic;
+    but_8_o         : out std_logic;
+    but_9_o         : out std_logic;
+    but_star_o      : out std_logic;
+    but_num_o       : out std_logic;
+    but_dot_o       : out std_logic;
+    but_clear_o     : out std_logic;
+    but_equal_o     : out std_logic;
   );
 
 end snespad_pad;
