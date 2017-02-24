@@ -82,21 +82,21 @@ entity snespad is
     but_down_o       : out std_logic_vector(num_pads_g-1 downto 0);
     but_left_o       : out std_logic_vector(num_pads_g-1 downto 0);
     but_right_o      : out std_logic_vector(num_pads_g-1 downto 0);
-    but_0_o         : out std_logic(num_pads_g-1 downto 0);
-    but_1_o         : out std_logic(num_pads_g-1 downto 0);
-    but_2_o         : out std_logic(num_pads_g-1 downto 0);
-    but_3_o         : out std_logic(num_pads_g-1 downto 0);
-    but_4_o         : out std_logic(num_pads_g-1 downto 0);
-    but_5_o         : out std_logic(num_pads_g-1 downto 0);
-    but_6_o         : out std_logic(num_pads_g-1 downto 0);
-    but_7_o         : out std_logic(num_pads_g-1 downto 0);
-    but_8_o         : out std_logic(num_pads_g-1 downto 0);
-    but_9_o         : out std_logic(num_pads_g-1 downto 0);
-    but_star_o      : out std_logic(num_pads_g-1 downto 0);
-    but_num_o       : out std_logic(num_pads_g-1 downto 0);
-    but_dot_o       : out std_logic(num_pads_g-1 downto 0);
-    but_clear_o     : out std_logic(num_pads_g-1 downto 0);
-    but_equal_o     : out std_logic(num_pads_g-1 downto 0)
+    but_0_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_1_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_2_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_3_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_4_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_5_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_6_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_7_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_8_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_9_o          : out std_logic_vector(num_pads_g-1 downto 0);
+    but_star_o       : out std_logic_vector(num_pads_g-1 downto 0);
+    but_num_o        : out std_logic_vector(num_pads_g-1 downto 0);
+    but_dot_o        : out std_logic_vector(num_pads_g-1 downto 0);
+    but_clear_o      : out std_logic_vector(num_pads_g-1 downto 0);
+    but_equal_o      : out std_logic_vector(num_pads_g-1 downto 0)
   );
 
 end snespad;
