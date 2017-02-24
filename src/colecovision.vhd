@@ -79,15 +79,15 @@ entity colecovision is
 		vram_we_o		: out std_logic;
 		vram_data_i		: in  std_logic_vector( 7 downto 0);
 		vram_data_o		: out std_logic_vector( 7 downto 0);
-		-- Cartridge ROM Interface ------------------------------------------------
-		cart_addr_o		: out std_logic_vector(14 downto 0);	-- 32K
-		cart_en_80_n_o	: out std_logic;
-		cart_en_a0_n_o	: out std_logic;
-		cart_en_c0_n_o	: out std_logic;
-		cart_en_e0_n_o	: out std_logic;
-		cart_ce_o		: out std_logic;
-		cart_oe_o		: out std_logic;
-		cart_data_i		: in  std_logic_vector( 7 downto 0);
+--		-- Cartridge ROM Interface ------------------------------------------------
+--		cart_addr_o		: out std_logic_vector(14 downto 0);	-- 32K
+--		cart_en_80_n_o	: out std_logic;
+--		cart_en_a0_n_o	: out std_logic;
+--		cart_en_c0_n_o	: out std_logic;
+--		cart_en_e0_n_o	: out std_logic;
+--		cart_ce_o		: out std_logic;
+--		cart_oe_o		: out std_logic;
+--		cart_data_i		: in  std_logic_vector( 7 downto 0);
 		-- Audio Interface --------------------------------------------------------
 		audio_o			: out std_logic_vector(7 downto 0);
 		audio_signed_o	: out signed(7 downto 0);
@@ -151,6 +151,7 @@ architecture Behavior of colecovision is
 	signal cfg_page_r			: std_logic_vector(7 downto 0);
 
 	-- BIOS
+	signal loader_ce_s		: std_logic;
 	signal d_from_loader_s	: std_logic_vector( 7 downto 0);
 	signal loader_q			: std_logic;
 	signal multcart_q			: std_logic;
@@ -354,6 +355,7 @@ begin
 	-----------------------------------------------------------------------------
 	-- Misc outputs
 	-----------------------------------------------------------------------------
+	loader_ce_s		<= not rd_n_s and bios_ce_s	when loader_q = '1'	else '0';
 	bios_we_s		<= not wr_n_s and bios_ce_s	when loader_q = '1'	else '0';
 	bios_oe_s		<= not rd_n_s and bios_ce_s;
 
@@ -386,13 +388,13 @@ begin
 	ram_we_o			<= (not wr_n_s and ram_ce_s) or bios_we_s or cart_we_s;
 	ram_oe_o			<= (not rd_n_s and ram_ce_s) or bios_oe_s or cart_oe_s;
 
-	cart_addr_o		<= cpu_addr_s(14 downto 0);
-	cart_en_80_n_o	<= cart_en_80_n_s;
-	cart_en_a0_n_o	<= cart_en_A0_n_s;
-	cart_en_c0_n_o	<= cart_en_C0_n_s;
-	cart_en_e0_n_o	<= cart_en_E0_n_s;
-	cart_ce_o		<= cart_ce_s;
-	cart_oe_o		<= cart_oe_s;
+--	cart_addr_o		<= cpu_addr_s(14 downto 0);
+--	cart_en_80_n_o	<= cart_en_80_n_s;
+--	cart_en_a0_n_o	<= cart_en_A0_n_s;
+--	cart_en_c0_n_o	<= cart_en_C0_n_s;
+--	cart_en_e0_n_o	<= cart_en_E0_n_s;
+--	cart_ce_o		<= cart_ce_s;
+--	cart_oe_o		<= cart_oe_s;
 
 	-- Address decoding
 	mem_access_s	<= '1'	when mreq_n_s = '0' and rfsh_n_s = '1'							else '0';
@@ -450,7 +452,7 @@ begin
 
 	-- MUX data CPU
 	d_to_cpu_s	<=	-- Memory
-						d_from_loader_s				when loader_q = '1'			else
+						d_from_loader_s				when loader_ce_s = '1'		else
 						ram_data_i						when bios_ce_s = '1'			else
 						ram_data_i						when ram_ce_s  = '1'			else
 						ram_data_i						when cart_ce_s = '1'			else
